@@ -1,3 +1,24 @@
-/*body{*/
-/*    background-color: blue;*/
-/*}*/
+body{
+    background-color: #AAB4BF;
+}
+.nav-div{
+    background: #6D7383;
+}
+ul .nav-item{
+    font-weight: bold;
+}
+.card{
+    background-color: #D9D9D9;
+}
+.card-text{
+    font-weight: bold;
+}
+.card-body a{
+    background-color: #6D7383;
+    color:#FFFFFF
+
+}
+
+.pregledaj{
+    padding-left: 25%;
+}
