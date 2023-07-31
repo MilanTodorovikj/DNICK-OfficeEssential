@@ -21,3 +21,8 @@ def checkout(request):
 def product(request):
     context = {}
     return render(request, 'store/product.html', context)
+
+def confirmation(request):
+    context = {}
+    return render(request, 'store/confirmation.html', context)
+
