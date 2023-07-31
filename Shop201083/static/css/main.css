@@ -22,3 +22,15 @@ ul .nav-item{
 .pregledaj{
     padding-left: 25%;
 }
+
+footer{
+    background-color: #6D7383; !important;
+}
+
+footer a{
+    text-decoration: none;
+}
+footer hr{
+    border: white solid 1px;
+    opacity: 100;
+}
