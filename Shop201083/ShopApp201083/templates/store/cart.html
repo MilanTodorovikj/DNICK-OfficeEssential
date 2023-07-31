@@ -3,7 +3,96 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
 
-<h3>Cart</h3>
+<h3>Кошничка</h3>
+<hr>
+<div class="row">
+    <div class="col-4">
+        <h6>Производ:</h6>
+
+    </div>
+    <div class="col-2">
+        <h6>Количина:</h6>
+
+    </div>
+    <div class="col-2">
+        <h6>Цена:</h6>
+
+    </div>
+</div>
+
+<div class="row cart-product align-items-center my-2">
+    <div class="col-1">
+        <img src="{% static 'images/chair.png' %}" height="125px" width="100px">
+    </div>
+    <div class="col-3">
+        <h6>Ime:</h6>
+
+    </div>
+    <div class="col-2">
+        <h6>Количина:</h6>
+
+    </div>
+    <div class="col-2 text-success">
+        <h6>Цена: ден.</h6>
+
+    </div>
+    <div class="col-2">
+        <button class="btn btn-white nazad">
+            <b>Измени</b>
+        </button>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-danger text-dark">
+            <b>Избриши</b>
+        </button>
+    </div>
+</div>
+<div class="row cart-product align-items-center my-2">
+    <div class="col-1">
+        <img src="{% static 'images/chair.png' %}" height="125px" width="100px">
+    </div>
+    <div class="col-3">
+        <h6>Ime:</h6>
+
+    </div>
+    <div class="col-2">
+        <h6>Количина:</h6>
+
+    </div>
+    <div class="col-2 text-success">
+        <h6>Цена: ден.</h6>
+
+    </div>
+    <div class="col-2">
+        <button class="btn btn-white nazad">
+            <b>Измени</b>
+        </button>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-danger text-dark">
+            <b>Избриши</b>
+        </button>
+    </div>
+</div>
+<hr>
+<div class="row mb-5">
+    <b class="col-3">
+        Вкупно
+    </b>
+    <div class="col-6"></div>
+    <b class="col-3">
+        Цена ден.
+    </b>
+</div>
+<div class="row mb-5">
+    <a href="#" class="btn btn-white col-3 nazad text-white">
+        Назад
+    </a>
+    <div class="col-6"></div>
+    <a href="#" class="btn btn-success col-3">
+        Нарачај
+    </a>
+</div>
 
 {% endblock content %}
 <!--<img src="{% static 'images/cart.jpg' %}" height="400px" width="400px">-->
