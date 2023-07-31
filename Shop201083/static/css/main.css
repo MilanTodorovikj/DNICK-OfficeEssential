@@ -30,7 +30,18 @@ footer{
 footer a{
     text-decoration: none;
 }
+
 footer hr{
     border: white solid 1px;
     opacity: 100;
+}
+
+.nazad{
+    background-color: #6D7383;
+}
+
+.product-body{
+    background-color: #D9D9D9;
+    padding: 20px;
+    border-radius: 5px;
 }
