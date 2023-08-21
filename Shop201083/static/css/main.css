@@ -13,9 +13,9 @@ ul .nav-item{
 .card-text{
     font-weight: bold;
 }
-.card-body a{
-    background-color: #6D7383;
-    color:#FFFFFF
+.card-body button{
+    background-color: #6D7383 !important;
+    color:#FFFFFF !important;
 
 }
 

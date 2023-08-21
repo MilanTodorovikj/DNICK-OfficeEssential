@@ -19,21 +19,21 @@
 
     </div>
 </div>
-
+{%for item in order_items%}
 <div class="row cart-product align-items-center my-2">
-    <div class="col-1">
-        <img src="{% static 'images/chair.png' %}" height="125px" width="100px">
+    <div class="col-2">
+        <img src="{{item.product.image.url}}" height="125px" width="100px">
     </div>
-    <div class="col-3">
-        <h6>Ime:</h6>
+    <div class="col-2">
+        <h6>{{item.product.name}}</h6>
 
     </div>
     <div class="col-2">
-        <h6>Количина:</h6>
+        <h6>{{item.quantity}}</h6>
 
     </div>
     <div class="col-2 text-success">
-        <h6>Цена: ден.</h6>
+        <h6>{{item.get_shopping_cart_item_price}} ден.</h6>
 
     </div>
     <div class="col-2">
@@ -42,38 +42,39 @@
         </button>
     </div>
     <div class="col-2">
-        <button class="btn btn-danger text-dark">
+        <a class="btn btn-danger text-dark" href="{% url 'delete_item' item.id %}">
             <b>Избриши</b>
-        </button>
+        </a>
     </div>
 </div>
-<div class="row cart-product align-items-center my-2">
-    <div class="col-1">
-        <img src="{% static 'images/chair.png' %}" height="125px" width="100px">
-    </div>
-    <div class="col-3">
-        <h6>Ime:</h6>
+{%endfor%}
+<!--<div class="row cart-product align-items-center my-2">-->
+<!--    <div class="col-1">-->
+<!--        <img src="{% static 'images/chair.png' %}" height="125px" width="100px">-->
+<!--    </div>-->
+<!--    <div class="col-3">-->
+<!--        <h6>Ime:</h6>-->
 
-    </div>
-    <div class="col-2">
-        <h6>Количина:</h6>
+<!--    </div>-->
+<!--    <div class="col-2">-->
+<!--        <h6>Количина:</h6>-->
 
-    </div>
-    <div class="col-2 text-success">
-        <h6>Цена: ден.</h6>
+<!--    </div>-->
+<!--    <div class="col-2 text-success">-->
+<!--        <h6>Цена: ден.</h6>-->
 
-    </div>
-    <div class="col-2">
-        <button class="btn btn-white nazad">
-            <b>Измени</b>
-        </button>
-    </div>
-    <div class="col-2">
-        <button class="btn btn-danger text-dark">
-            <b>Избриши</b>
-        </button>
-    </div>
-</div>
+<!--    </div>-->
+<!--    <div class="col-2">-->
+<!--        <button class="btn btn-white nazad">-->
+<!--            <b>Измени</b>-->
+<!--        </button>-->
+<!--    </div>-->
+<!--    <div class="col-2">-->
+<!--        <button class="btn btn-danger text-dark">-->
+<!--            <b>Избриши</b>-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</div>-->
 <hr>
 <div class="row mb-5">
     <b class="col-3">
@@ -81,7 +82,7 @@
     </b>
     <div class="col-6"></div>
     <b class="col-3">
-        Цена ден.
+        {{order.get_order_total_price}} ден.
     </b>
 </div>
 <div class="row mb-5">
