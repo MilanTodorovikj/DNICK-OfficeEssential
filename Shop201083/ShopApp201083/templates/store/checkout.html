@@ -25,39 +25,37 @@
                     <input name="phone" id="phone" type="text" class="form-control" placeholder="Телефон:">
                 </div>
                 <div class="form-check col-12 mt-4 ml-4">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="pay_cash">
+                    <label class="form-check-label" for="pay_cash">
                         Плати на лице место
                     </label>
                 </div>
-                <div class="form-check col-12 mt-2 ml-4">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Плати со кредитна картичка
-                    </label>
+
+                <div class="col-12 mt-4">
+                    <input name="card-name" id="card-name" type="text" class="form-control to_disable"
+                           placeholder="Име на картичка:">
                 </div>
                 <div class="col-12 mt-4">
-                    <input name="card-name" id="card-name" type="text" class="form-control" placeholder="Име на картичка:">
-                </div>
-                <div class="col-12 mt-4">
-                    <input name="card-number" id="card-number" type="text" class="form-control" placeholder="Број на картичка:">
+                    <input name="card-number" id="card-number" type="text" class="form-control to_disable"
+                           placeholder="Број на картичка:">
                 </div>
                 <div class="col-6 mt-4">
-                    <input name="valid-to" id="valid-to" type="text" class="form-control" placeholder="MM/YY:">
+                    <input name="valid-to" id="valid-to" type="text" class="form-control to_disable"
+                           placeholder="MM/YY:">
                 </div>
                 <div class="col-6 mt-4">
-                    <input name="CVV" id="CVV" type="text" class="form-control" placeholder="CVV:">
+                    <input name="CVV" id="CVV" type="text" class="form-control to_disable" placeholder="CVV:">
                 </div>
                 <div class="col-6 mt-4">
                     <a href="/cart" class="btn btn-primary col-12">
-                    Назад
-                </a>
-                    </div>
+                        Назад
+                    </a>
+                </div>
                 <div class="col-6 mt-4">
-                <button type="submit" href="#" class="btn btn-success col-12">
-                    Изврши нарачка
-                </input>
-                    </div>
+                    <button type="submit" href="#" class="btn btn-success col-12">
+                        Изврши нарачка
+                    </button>
+                </div>
 
 
             </div>
@@ -66,6 +64,26 @@
     </div>
 
 </div>
+
+<script>
+    let radio_btn_cash = document.getElementById('pay_cash')
+
+    let inputs_to_disable = document.getElementsByClassName('to_disable')
+
+    radio_btn_cash.addEventListener("change", function () {
+        if (radio_btn_cash.checked) {
+            for (i = 0; i < inputs_to_disable.length; i++) {
+                inputs_to_disable[i].disabled = true
+                inputs_to_disable[i].classList.add('disabled_btn')
+            }
+        } else if (radio_btn_cash.checked) {
+            for (i = 0; i < inputs_to_enable.length; i++) {
+                inputs_to_enable[i].disabled = false
+                inputs_to_enable[i].classList.remove('disabled_btn')
+            }
+        }
+    });
+</script>
 
 {% endblock content %}
 <!--<img src="{% static 'images/cart.jpg' %}" height="400px" width="400px">-->
