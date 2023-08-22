@@ -6,22 +6,23 @@
 <div class="row justify-content-center">
     <div class="col-8 forma-naracaj p-3 mb-5">
         <h1 class="text-center text-primary">Нарачај</h1>
-        <form class="mt-2">
+        <form class="mt-2" method="POST" action="{% url 'checkout' order.id %}">
+            {%csrf_token%}
             <div class="row  mt-4">
                 <div class="col-6">
-                    <input type="text" class="form-control" placeholder="Име:">
+                    <input name="name" id="name" type="text" class="form-control" placeholder="Име:">
                 </div>
                 <div class="col-6">
-                    <input type="text" class="form-control" placeholder="Презиме:">
+                    <input name="surname" id="surname" type="text" class="form-control" placeholder="Презиме:">
                 </div>
                 <div class="col-12 mt-4">
-                    <input type="text" class="form-control" placeholder="Е-пошта:">
+                    <input name="email" id="email" type="text" class="form-control" placeholder="Е-пошта:">
                 </div>
                 <div class="col-12 mt-4">
-                    <input type="text" class="form-control" placeholder="Адреса:">
+                    <input name="address" id="address" type="text" class="form-control" placeholder="Адреса:">
                 </div>
                 <div class="col-12 mt-4">
-                    <input type="text" class="form-control" placeholder="Телефон:">
+                    <input name="phone" id="phone" type="text" class="form-control" placeholder="Телефон:">
                 </div>
                 <div class="form-check col-12 mt-4 ml-4">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
@@ -36,26 +37,26 @@
                     </label>
                 </div>
                 <div class="col-12 mt-4">
-                    <input type="text" class="form-control" placeholder="Име на картичка:">
+                    <input name="card-name" id="card-name" type="text" class="form-control" placeholder="Име на картичка:">
                 </div>
                 <div class="col-12 mt-4">
-                    <input type="text" class="form-control" placeholder="Број на картичка:">
+                    <input name="card-number" id="card-number" type="text" class="form-control" placeholder="Број на картичка:">
                 </div>
                 <div class="col-6 mt-4">
-                    <input type="text" class="form-control" placeholder="MM/YY:">
+                    <input name="valid-to" id="valid-to" type="text" class="form-control" placeholder="MM/YY:">
                 </div>
                 <div class="col-6 mt-4">
-                    <input type="text" class="form-control" placeholder="CVV:">
+                    <input name="CVV" id="CVV" type="text" class="form-control" placeholder="CVV:">
                 </div>
                 <div class="col-6 mt-4">
-                    <a href="#" class="btn btn-primary col-12">
+                    <a href="/cart" class="btn btn-primary col-12">
                     Назад
                 </a>
                     </div>
                 <div class="col-6 mt-4">
-                <a href="#" class="btn btn-success col-12">
+                <button type="submit" href="#" class="btn btn-success col-12">
                     Изврши нарачка
-                </a>
+                </input>
                     </div>
 
 

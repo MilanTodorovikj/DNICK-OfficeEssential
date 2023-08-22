@@ -33,7 +33,7 @@
 
     </div>
     <div class="col-2 text-success">
-        <h6>{{item.get_shopping_cart_item_price}} ден.</h6>
+        <h6>{{item.product.price}} ден.</h6>
 
     </div>
     <div class="col-2">
@@ -86,11 +86,11 @@
     </b>
 </div>
 <div class="row mb-5">
-    <a href="#" class="btn btn-white col-3 nazad text-white">
+    <a href="/" class="btn btn-white col-3 nazad text-white">
         Назад
     </a>
     <div class="col-6"></div>
-    <a href="#" class="btn btn-success col-3">
+    <a href="{% url 'checkout' order.id %}" class="btn btn-success col-3">
         Нарачај
     </a>
 </div>

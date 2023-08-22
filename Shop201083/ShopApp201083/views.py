@@ -21,9 +21,16 @@ def cart(request):
     return render(request, 'store/cart.html', context)
 
 
-def checkout(request):
-    context = {}
-    return render(request, 'store/checkout.html', context)
+def checkout(request, id):
+    if request.method == "POST":
+        order = Order(pk=id)
+        order.is_ordered = True
+        order.save()
+        return redirect('confirmation')
+    else:
+        order = Order(pk=id)
+    context = {"order": order}
+    return render(request, "store/checkout.html", context=context)
 
 
 def product(request, product_id):
@@ -43,7 +50,11 @@ def add_to_cart(request):
         print(shop_user)
         order, created = Order.objects.get_or_create(buyer=shop_user, is_ordered=False)
         product_id = request.POST.get('product_id')
-        quantity = int(request.POST.get('quantity'))
+
+        quantity = 1
+
+        if not request.POST.get('quantity') == '':
+            quantity = int(request.POST.get('quantity'))
 
         product = get_object_or_404(Product, pk=product_id)
 
