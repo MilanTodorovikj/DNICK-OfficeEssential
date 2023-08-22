@@ -1,10 +1,12 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import CreateUserForm
 from .models import Product, ShopUser, Order, OrderItem
 from django.contrib.auth.models import Group
 from django.contrib import messages
+from .decorators import unauthenticated_user, allowed_users, admin_only
 
 
 # Create your views here.
@@ -17,6 +19,8 @@ def store(request):
     return render(request, 'store/store.html', context)
 
 
+@login_required(login_url='login_page')
+@allowed_users(allowed_roles=['admin', 'shop_user'])
 def cart(request):
     shop_user = ShopUser.objects.get(user=request.user)
     order, created = Order.objects.get_or_create(buyer=shop_user, is_ordered=False)
@@ -26,6 +30,8 @@ def cart(request):
     return render(request, 'store/cart.html', context)
 
 
+@login_required(login_url='login_page')
+@allowed_users(allowed_roles=['admin', 'shop_user'])
 def checkout(request, id):
     if request.method == "POST":
         order = Order(pk=id)
@@ -44,6 +50,8 @@ def product(request, product_id):
     return render(request, 'store/product.html', context)
 
 
+@login_required(login_url='login_page')
+@allowed_users(allowed_roles=['admin', 'shop_user'])
 def order_item_change(request, product_id, quantity):
     order_item = OrderItem.objects.get(id=product_id)
 
@@ -56,11 +64,15 @@ def order_item_change(request, product_id, quantity):
     return render(request, 'store/order_item_change.html', context)
 
 
+@login_required(login_url='login_page')
+@allowed_users(allowed_roles=['admin', 'shop_user'])
 def confirmation(request):
     context = {}
     return render(request, 'store/confirmation.html', context)
 
 
+@login_required(login_url='login_page')
+@allowed_users(allowed_roles=['admin', 'shop_user'])
 def add_to_cart(request):
     if request.method == 'POST':
         shop_user = ShopUser.objects.get(user=request.user)
@@ -92,12 +104,15 @@ def add_to_cart(request):
     return redirect('store')
 
 
+@login_required(login_url='login_page')
+@allowed_users(allowed_roles=['admin', 'shop_user'])
 def delete_item(request, item_id=0):
     order_item = OrderItem.objects.get(pk=item_id)
     order_item.delete()
     return redirect('cart')
 
 
+@unauthenticated_user
 def register(request):
     form = CreateUserForm()
     shop_user = ShopUser()
@@ -122,6 +137,7 @@ def register(request):
     return render(request, "registration/register.html", context=context)
 
 
+@unauthenticated_user
 def login_page(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -137,6 +153,13 @@ def login_page(request):
 
     context = {}
     return render(request, "registration/login.html", context=context)
+
+
+@login_required(login_url='login_page')
+@allowed_users(allowed_roles=['admin', 'shop_user'])
+def logout_user(request):
+    logout(request)
+    return redirect('login_page')
 
 #
 # def product_list(request):

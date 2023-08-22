@@ -30,9 +30,11 @@
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="/">Продукти</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/cart">Кошничка</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">За нас</a>
                 </li>
@@ -42,8 +44,17 @@
             <div class="d-flex">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link text-white" href="#">{{ user.username }}</a>
+                        {% else %}
                         <a class="nav-link text-white" href="/login_page">Најави се</a>
+                        {% endif %}
                     </li>
+                    <li class="nav-item">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link text-white" href="{% url 'logout_user' %}">Logout</a>
+                    {% endif %}
+                </li>
                 </ul>
             </div>
         </div>
@@ -57,7 +68,7 @@
     {% endblock content %}
 
 </div>
-<footer>
+<footer class="mt-3">
     <div class="container">
         <div class="row">
             <div class="col-6 mt-5">
@@ -76,11 +87,13 @@
                         За нас
                     </p>
                 </a>
+                {% if user.is_authenticated %}
                 <a href="/cart">
                     <p class="text-center text-white mt-1">
                         Кошничка
                     </p>
                 </a>
+                {% endif %}
 
 
             </div>
