@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
+from .forms import CreateUserForm
 from .models import Product, ShopUser, Order, OrderItem
+from django.contrib.auth.models import Group
+from django.contrib import messages
 
 
 # Create your views here.
@@ -42,7 +46,7 @@ def product(request, product_id):
 def order_item_change(request, product_id, quantity):
     order_item = OrderItem.objects.get(id=product_id)
 
-    if request.method== "POST":
+    if request.method == "POST":
         order_item.quantity = request.POST['quantity']
         order_item.save()
         return redirect("cart")
@@ -91,6 +95,30 @@ def delete_item(request, item_id=0):
     order_item = OrderItem.objects.get(pk=item_id)
     order_item.delete()
     return redirect('cart')
+
+
+def register(request):
+    form = CreateUserForm()
+    shop_user = ShopUser()
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            group = Group.objects.get(name='shop_user')
+            user.groups.add(group)
+            user.is_staff = True
+            shop_user.user = user
+            shop_user.username = user.username
+            user.first_name = user.username
+            shop_user.email = user.email
+            user.save()
+            shop_user.save()
+
+            messages.add_message(request, messages.SUCCESS, 'Account was created for ' + user.username)
+            return redirect('store')
+
+    context = {"form": form}
+    return render(request, "registration/register.html", context=context)
 
 #
 # def product_list(request):
