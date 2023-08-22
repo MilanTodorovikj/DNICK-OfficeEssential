@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import CreateUserForm
@@ -115,10 +116,27 @@ def register(request):
             shop_user.save()
 
             messages.add_message(request, messages.SUCCESS, 'Account was created for ' + user.username)
-            return redirect('store')
+            return redirect('login_page')
 
     context = {"form": form}
     return render(request, "registration/register.html", context=context)
+
+
+def login_page(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('store')
+        else:
+            messages.add_message(request, messages.ERROR, 'Bad credentials')
+
+    context = {}
+    return render(request, "registration/login.html", context=context)
 
 #
 # def product_list(request):

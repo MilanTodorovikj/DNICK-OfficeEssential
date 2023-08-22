@@ -1,0 +1,40 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div id="login-form" class="my-4 py-4 container px-4" style="background-color: #D9D9D9; border-radius: 10px">
+    <h2 class="text-center mb-4" style="color:#4B6C8D">Најава</h2>
+    <div class="row">
+        <div class="col-12">
+            <form method="post" action="{% url 'login_page' %}">
+                {% csrf_token %}
+                <input id="login_field" class="form-control my-3" type="text" placeholder="Корисничко име"
+                       name="username"
+                       aria-label="readonly input example">
+                <input id="password_field" class="form-control my-3" type="password" placeholder="Лозинка"
+                       name="password"
+                       aria-label="readonly input example">
+                <div class="d-flex align-items-center justify-content-evenly mt-3">
+                    <button id="log_in_button" class="btn btn-primary w-25"
+                            style="background-color: #4B6C8D; height: 50px">Најава
+                    </button>
+
+                    <a id="register_in_form_login" class="btn btn-primary w-25 text-center"
+                       style="background-color: #4B6C8D; height: 50px; padding-top: 11px"
+                       href="{% url 'register' %}">Регистрација</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <span class="badge text-bg-success mt-3 py-2 px-4">{{ message }}</span>
+    {% endif %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <span class="badge text-bg-danger mt-3 py-2 px-4">{{ message }}</span>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock content %}

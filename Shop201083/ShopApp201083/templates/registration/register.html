@@ -1,20 +1,22 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-    <div id="loginRegisterForm">
-        <h2 class="text-center">Register</h2>
+    <div id="register-form" class="my-4 py-4 container px-4" style="background-color: #D9D9D9; border-radius: 10px">
+        <h2 class="text-center mb-4" style="color:#4B6C8D">Регистрација</h2>
         <div class="row">
             <div class="col-12">
-                <hr style="color: #00ADB5">
-                <p>Create a new account</p>
                 <form method="post" action="{% url 'register' %}">
                     {% csrf_token %}
                     {{ form.username }}
                     {{ form.email }}
                     {{ form.password1 }}
                     {{ form.password2 }}
-                    <button id="register_button" class="btn btn-primary w-100 log_in_button" type="submit" name="CreateUser">Register
+                    <div class="row justify-content-center">
+                        <button id="register_button" class="btn btn-dark text-white w-25"
+                            style="background-color: #4B6C8D; height: 50px" type="submit" name="CreateUser"><b>Регистрација</b>
                     </button>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -24,8 +26,7 @@
 {#        <span class="badge text-bg-danger mt-3 py-2 px-4">{{ form.errors }}</span>#}
         {{ form.errors }}
         <div class="d-flex align-items-center justify-content-center mt-3">
-            <p class="me-2 mb-0">Already have an account?</p>
-            <a class="btn btn-primary log_in_button py-1 px-4 me-3" href="#">Log in</a>
+            <a href="/login_page">Веќе си корисник?</a>
         </div>
     </div>
 
