@@ -39,6 +39,18 @@ def product(request, product_id):
     return render(request, 'store/product.html', context)
 
 
+def order_item_change(request, product_id, quantity):
+    order_item = OrderItem.objects.get(id=product_id)
+
+    if request.method== "POST":
+        order_item.quantity = request.POST['quantity']
+        order_item.save()
+        return redirect("cart")
+
+    context = {"product": order_item, "quantity": quantity}
+    return render(request, 'store/order_item_change.html', context)
+
+
 def confirmation(request):
     context = {}
     return render(request, 'store/confirmation.html', context)

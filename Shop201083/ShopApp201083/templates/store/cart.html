@@ -37,9 +37,9 @@
 
     </div>
     <div class="col-2">
-        <button class="btn btn-white nazad">
+        <a class="btn btn-white nazad" href="{% url 'order_item_change' item.id item.quantity %}">
             <b>Измени</b>
-        </button>
+        </a>
     </div>
     <div class="col-2">
         <a class="btn btn-danger text-dark" href="{% url 'delete_item' item.id %}">

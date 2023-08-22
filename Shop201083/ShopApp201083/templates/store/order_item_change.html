@@ -1,0 +1,88 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+
+<div class="product-body mb-5 pt-4">
+    <div class="row">
+
+        <div class="col-4">
+            <img src="{{product.product.image.url}}" height="350px">
+        </div>
+        <div class="col-8">
+            <h2 class="mb-2">{{product.product.name}}</h2>
+            <h4 class="mb-4 text-success">{{product.product.price}} ден.</h4>
+            <h5 class="mb-1">Опис:</h5>
+            <p class="mb-4">
+                {{product.product.description}}
+            </p>
+
+            <form method="POST" action="{% url 'order_item_change' product.id product.quantity %}">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" id="product_id" value="{{product.id}}">
+                <div class="row">
+                    <h6 class="col-3">
+                        Количина:
+                    </h6>
+                    <div class="col-3">
+                        <input type="number" class="form-control" placeholder="Количина" name="quantity" id="quantity" value="{{product.quantity}}">
+                    </div>
+                    <button type="submit" class="btn btn-success col-6">
+                        <div class="row">
+                            <div class="col-2"><img src="{% static 'images/cart_icon.png' %}" height="20px"
+                                                    width="20px">
+                            </div>
+                            <div class="col-9">
+                                Додади во кошничка
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </form>
+
+
+        </div>
+
+        <!--        <div class="col-4">-->
+        <!--            <img src="{% static 'images/chair.png' %}" height="350px">-->
+        <!--        </div>-->
+        <!--        <div class="col-8">-->
+        <!--            <h2 class="mb-2">Име</h2>-->
+        <!--            <h4 class="mb-4 text-success">Cena</h4>-->
+        <!--            <h5 class="mb-1">Опис:</h5>-->
+        <!--            <p class="mb-4">-->
+        <!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et-->
+        <!--                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip-->
+        <!--                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu-->
+        <!--                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia-->
+        <!--                deserunt mollit anim id est laborum.-->
+        <!--            </p>-->
+        <!--            <div class="row">-->
+        <!--                <h6 class="col-3">-->
+        <!--                    Количина:-->
+        <!--                </h6>-->
+        <!--                <div class="col-3">-->
+        <!--                    <input type="number" class="form-control" placeholder="Количина">-->
+        <!--                </div>-->
+        <!--                <button type="submit" class="btn btn-success col-6">-->
+        <!--                    <div class="row">-->
+        <!--                        <div class="col-2"><img src="{% static 'images/cart_icon.png' %}" height="20px" width="20px">-->
+        <!--                        </div>-->
+        <!--                        <div class="col-9">Додади во кошничка</div>-->
+        <!--                    </div>-->
+        <!--                </button>-->
+
+        <!--            </div>-->
+
+        <!--        </div>-->
+
+    </div>
+    <div class="row mt-5 mb-2 justify-content-end">
+        <a href="/cart" class="btn btn-white nazad col-3 text-white">
+            Назад
+        </a>
+    </div>
+</div>
+
+{% endblock content %}
+<!--<img src="{% static 'images/cart.jpg' %}" height="400px" width="400px">-->
