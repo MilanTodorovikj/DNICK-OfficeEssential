@@ -28,10 +28,17 @@
     </div>
 </div>
 <div class="row mt-4">
+    {% if user.is_superuser %}
+        <div class="col-3">
+            <a id="add_product_btn" class="btn btn-primary" href="{% url 'add_product' %}" style="background-color: #4B6C8D">Додади нов производ</a>
+        </div>
+    {% endif %}
     <div class="col">
         <input type="text" class="form-control" placeholder="Пребарај продукт">
     </div>
 </div>
+
+
 
 <div class="row mt-4 d-flex justify-content-center">
     {%for product in products%}

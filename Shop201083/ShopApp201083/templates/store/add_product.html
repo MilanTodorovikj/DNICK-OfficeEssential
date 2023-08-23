@@ -1,0 +1,58 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5 py-3" style="background-color: #D9D9D9; border-radius: 10px">
+    <h2 class="text-center my-3" style="color: #4B6C8D">Додади производ</h2>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-6">
+                    <label><b>Име на производ</b></label>
+                    {{ form.name }}
+                </div>
+                <div class="col-6">
+                    <label><b>Модел</b></label>
+                    {{ form.model }}
+                </div>
+                <div class="col-6">
+                    <label><b>Производител</b></label>
+                    {{ form.manufacturer }}
+                </div>
+                <div class="col-6">
+                    <label><b>Категорија</b></label>
+                    {{ form.category }}
+                </div>
+                <div class="col-6">
+                    <label><b>Цена</b></label>
+                    {{ form.price }}
+                </div>
+                <div class="col-6">
+                    <label><b>Количина</b></label>
+                    {{ form.quantity }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label><b>Опис</b></label>
+                    {{ form.description }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="mb-2"><b>Прикачи слика</b></label>
+                    {{ form.image }}
+                </div>
+            </div>
+            <div class="row justify-content-between mx-1 mt-2">
+                <a href="/" class="btn btn-dark text-white col-3" style="background-color: #4B6C8D">Назад</a>
+               <button type="submit" class="btn btn-success text-white col-3">Додади</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}

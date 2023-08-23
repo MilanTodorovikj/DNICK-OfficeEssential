@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import CreateUserForm
+from .forms import CreateUserForm, ProductForm
 from .models import Product, ShopUser, Order, OrderItem
 from django.contrib.auth.models import Group
 from django.contrib import messages
@@ -48,6 +48,29 @@ def product(request, product_id):
     product = Product.objects.get(id=product_id)
     context = {"product": product}
     return render(request, 'store/product.html', context)
+
+
+@login_required(login_url='login_page')
+@allowed_users(allowed_roles=['admin'])
+def add_product(request, id=0):
+    if request.method == "POST":
+        if id == 0:
+            form = ProductForm(request.POST, request.FILES)
+        else:
+            product_item = Product.objects.get(pk=id)
+            form = ProductForm(request.POST, request.FILES, instance=product_item)
+        if form.is_valid():
+            form.save()
+        return redirect("store")
+    else:
+        if id == 0:
+            form = ProductForm()
+        else:
+            product_item = Product.objects.get(pk=id)
+            form = ProductForm(instance=product_item)
+
+    context = {"form": form}
+    return render(request, "store/add_product.html", context=context)
 
 
 @login_required(login_url='login_page')
