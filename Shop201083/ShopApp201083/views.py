@@ -52,21 +52,21 @@ def product(request, product_id):
 
 @login_required(login_url='login_page')
 @allowed_users(allowed_roles=['admin'])
-def add_product(request, id=0):
+def add_product(request, item_id=0):
     if request.method == "POST":
-        if id == 0:
+        if item_id == 0:
             form = ProductForm(request.POST, request.FILES)
         else:
-            product_item = Product.objects.get(pk=id)
+            product_item = Product.objects.get(pk=item_id)
             form = ProductForm(request.POST, request.FILES, instance=product_item)
         if form.is_valid():
             form.save()
         return redirect("store")
     else:
-        if id == 0:
+        if item_id == 0:
             form = ProductForm()
         else:
-            product_item = Product.objects.get(pk=id)
+            product_item = Product.objects.get(pk=item_id)
             form = ProductForm(instance=product_item)
 
     context = {"form": form}
