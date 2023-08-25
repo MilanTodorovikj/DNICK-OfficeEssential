@@ -74,6 +74,14 @@ def add_product(request, id=0):
 
 
 @login_required(login_url='login_page')
+@allowed_users(allowed_roles=['admin'])
+def delete_product(request, item_id=0):
+    pair_of_shoes = Product.objects.get(pk=item_id)
+    pair_of_shoes.delete()
+    return redirect('store')
+
+
+@login_required(login_url='login_page')
 @allowed_users(allowed_roles=['admin', 'shop_user'])
 def order_item_change(request, product_id, quantity):
     order_item = OrderItem.objects.get(id=product_id)

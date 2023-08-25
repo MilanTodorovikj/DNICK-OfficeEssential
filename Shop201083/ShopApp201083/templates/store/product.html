@@ -39,7 +39,17 @@
                     </button>
                 </div>
             </form>
-
+            <div class="row mt-5 mb-2 justify-content-between">
+            <a href="/" class="btn btn-white nazad col-2 text-white">
+                Измени
+            </a>
+            <a href="{% url 'delete_product' product.id %}" class="btn btn-danger col-2 text-white">
+                Избриши
+            </a>
+            <a href="/" class="btn btn-white nazad col-2 text-white">
+                Назад
+            </a>
+        </div>
 
         </div>
 
@@ -77,11 +87,7 @@
         <!--        </div>-->
 
     </div>
-    <div class="row mt-5 mb-2 justify-content-end">
-        <a href="/" class="btn btn-white nazad col-3 text-white">
-            Назад
-        </a>
-    </div>
+
 </div>
 
 {% endblock content %}
